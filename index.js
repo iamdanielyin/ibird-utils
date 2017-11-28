@@ -184,9 +184,10 @@ app.value = (object, ...keys) => {
  * 递归文件夹，并对所有js文件执行回调
  * @param dir
  * @param callback
+ * @param filter
  * @param async
  */
-app.recursiveDir = (dir, callback, async) => {
+app.recursiveDir = (dir, callback, filter, async) => {
     // 是否异步，默认false
     async = typeof async === 'boolean' ? async : false;
 
@@ -203,7 +204,11 @@ app.recursiveDir = (dir, callback, async) => {
                     continue;
                 }
                 const parse = path.parse(fullpath);
-                if (!parse || parse.ext !== '.js') continue;
+                if (typeof filter === 'function') {
+                    if (!filter(parse)) continue;
+                } else {
+                    if (!parse || parse.ext !== '.js') continue;
+                }
                 if (typeof callback === 'function') {
                     callback(require(fullpath), parse);
                 }
@@ -214,7 +219,7 @@ app.recursiveDir = (dir, callback, async) => {
     }
 
     if (async) {
-        setTimeout(fn, 1);
+        setTimeout(fn);
     } else {
         fn();
     }
