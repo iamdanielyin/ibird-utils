@@ -1,2 +1,3 @@
-# ibird-utils
-Utility module for ibird.
+# ibird Latest Documentation
+
+Please [click me](https://yinfxs.gitbooks.io/ibird/content/index.html)
