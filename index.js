@@ -229,8 +229,9 @@ app.recursiveDir = (dir, callback, filter, async) => {
  * 将字符串格式转换成对象格式
  * @param str 字符串
  */
-app.str2Obj = (str, flag) => {
+app.str2Obj = (str, flag, negative) => {
     if (!str || !str.trim()) return {};
+    negative = (typeof negative === 'number') ? negative : -1;
     const split = flag ? str.trim().split(flag)
         : (str.indexOf(' ') >= 0 ? str.trim().split(' ') : str.trim().split(','));
     const obj = {};
@@ -241,7 +242,7 @@ app.str2Obj = (str, flag) => {
         let value = 1;
         if (key.startsWith('-')) {
             key = key.substr(1);
-            value = -1;
+            value = negative;
         }
         obj[key] = value;
     }
