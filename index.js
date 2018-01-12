@@ -186,10 +186,13 @@ app.value = (object, ...keys) => {
  * @param callback
  * @param filter
  * @param async
+ * @param needRequire
  */
-app.recursiveDir = (dir, callback, filter, async) => {
+app.recursiveDir = (dir, callback, filter, async, needRequire) => {
     // 是否异步，默认false
     async = typeof async === 'boolean' ? async : false;
+    // 是否require，默认true
+    needRequire = typeof needRequire === 'boolean' ? needRequire : true;
 
     // 执行函数
     function fn() {
@@ -210,7 +213,7 @@ app.recursiveDir = (dir, callback, filter, async) => {
                     if (!parse || parse.ext !== '.js') continue;
                 }
                 if (typeof callback === 'function') {
-                    callback(require(fullpath), parse);
+                    callback(needRequire ? require(fullpath) : null, parse);
                 }
             }
         } catch (e) {
