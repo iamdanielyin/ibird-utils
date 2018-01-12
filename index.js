@@ -203,7 +203,7 @@ app.recursiveDir = (dir, callback, filter, async, needRequire) => {
                 const stat = fs.statSync(fullpath);
                 if (stat.isFile() === false && stat.isDirectory() === false) continue;
                 if (stat.isDirectory()) {
-                    app.recursiveDir(fullpath, callback);
+                    app.recursiveDir(fullpath, callback, filter, async, needRequire);
                     continue;
                 }
                 const parse = path.parse(fullpath);
