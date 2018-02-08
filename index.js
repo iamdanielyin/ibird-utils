@@ -344,3 +344,25 @@ app.tree2List = (params) => {
     }
     return array;
 }
+
+/**
+ * 列表分组
+ * @param {*} list 列表
+ * @param {*} key 分组键
+ * @param {*} multi 是否允许多值
+ */
+app.groupBy = (list, key, multi) => {
+    const map = {};
+    if (!key) return map;
+    for (const item of list) {
+        if (!item[key]) continue;
+        const name = item[key];
+        if (multi) {
+            map[name] = map[name] || [];
+            map[name].push(item);
+        } else {
+            map[name] = item;
+        }
+    }
+    return map;
+}
