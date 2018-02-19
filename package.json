@@ -12,7 +12,7 @@
     "node",
     "utility"
   ],
-  "utilsor": "yinfxs",
+  "author": "yinfxs",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/yinfxs/ibird-utils/issues"
