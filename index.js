@@ -354,15 +354,17 @@ app.tree2List = (params) => {
 app.groupBy = (list, key, multi) => {
     const map = {};
     if (!key) return map;
-    for (const item of list) {
-        if (!item[key]) continue;
-        const name = item[key];
-        if (multi) {
-            map[name] = map[name] || [];
-            map[name].push(item);
-        } else {
-            map[name] = item;
+    try {
+        for (const item of list) {
+            if (!item[key]) continue;
+            const name = item[key];
+            if (multi) {
+                map[name] = map[name] || [];
+                map[name].push(item);
+            } else {
+                map[name] = item;
+            }
         }
-    }
+    } catch (e) { }
     return map;
 }

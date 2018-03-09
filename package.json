@@ -1,6 +1,6 @@
 {
   "name": "ibird-utils",
-  "version": "0.9.22",
+  "version": "0.9.23",
   "description": "Utility module for ibird.",
   "main": "index.js",
   "repository": {
