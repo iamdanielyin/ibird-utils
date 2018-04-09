@@ -267,10 +267,11 @@ app.list2Tree = (params) => {
     parentKey = parentKey || 'parent';
     childrenKey = childrenKey || 'children';
     idKey = idKey || '_id';
+    const listItemMap = app.groupBy(list, idKey);
     const childrenMap = {}, rootElements = [];
     for (const item of list) {
         const pid = item[parentKey];
-        if (pid) {
+        if (pid && listItemMap[pid] && pid !== item[idKey]) {
             childrenMap[pid] = childrenMap[pid] || [];
             childrenMap[pid].push(item);
         } else {

@@ -8,5 +8,5 @@ log
 logs
 public
 package-lock.json
-
-
+test
+.vscode
