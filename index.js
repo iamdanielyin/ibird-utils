@@ -269,7 +269,8 @@ app.list2Tree = (params) => {
     idKey = idKey || '_id';
     const listItemMap = app.groupBy(list, idKey);
     const childrenMap = {}, rootElements = [];
-    for (const item of list) {
+    for (let item of list) {
+        item = Object.assign({}, item);
         const pid = item[parentKey];
         if (pid && listItemMap[pid] && pid !== item[idKey]) {
             childrenMap[pid] = childrenMap[pid] || [];
